@@ -1,0 +1,20 @@
+{
+  "expo": {
+    "name": "GitTogether",
+    "slug": "gittogether-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.gittogether.mobile"
+    },
+    "android": {
+      "package": "com.gittogether.mobile"
+    },
+    "plugins": [
+      "expo-secure-store",
+      "expo-status-bar"
+    ]
+  }
+}
