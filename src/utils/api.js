@@ -3,7 +3,7 @@ import { API_URL } from "@env";
 import { getToken } from "./auth";
 
 const api = axios.create({
-  baseURL: API_URL || "http://10.0.2.2:3000/api",
+  baseURL: API_URL || "https://git-together-theta.vercel.app/api",
   timeout: 15000,
   headers: {
     "Content-Type": "application/json",

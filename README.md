@@ -73,6 +73,40 @@ SOCKET_URL=http://localhost:3000
 
 Do not commit `.env` or put private credentials in it.
 
+For EAS cloud builds, `.env` is not uploaded because it is ignored by Git.
+The mobile client therefore has the deployed backend URL as its committed
+production fallback. Keep `.env` for local development overrides.
+
+### Build an Android APK
+
+The repository includes an EAS preview profile that produces an installable
+APK. The current `.env` uses the deployed backend:
+
+```env
+API_URL=https://git-together-theta.vercel.app/api
+SOCKET_URL=https://git-together-theta.vercel.app
+```
+
+Install and authenticate with EAS, then run the build from the repository root:
+
+```powershell
+npx.cmd eas-cli@latest login
+npx.cmd eas-cli@latest build:configure
+npx.cmd eas-cli@latest build --platform android --profile preview
+```
+
+If EAS asks to create or link a project, choose the current
+`gittogether-mobile` project. When the build completes, download the APK from
+the URL printed by EAS and install it on an Android device. The preview
+profile is for direct APK installation; use the `production` profile when
+publishing an Android App Bundle to Google Play.
+
+The deployed backend must expose the same `/api` routes used by the mobile
+client. Socket.IO chat requires a deployment that supports long-lived
+WebSocket connections; if the Vercel deployment does not support them, the
+HTTP features can still work but real-time chat will require moving the
+Socket.IO server to a WebSocket-capable host.
+
 ## Run
 
 First, install and start the backend from its separate repository using that
